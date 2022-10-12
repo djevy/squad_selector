@@ -1,0 +1,10 @@
+runData_squad_selector_data({
+    "players" : [{
+        "Name": "Darren Evans",
+        "Role": "Goal Keeper"
+        },
+        {
+            "Name": "Jason Evans",
+            "Role": "Striker"
+    }]
+})
