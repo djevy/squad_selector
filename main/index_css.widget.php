@@ -159,14 +159,24 @@
 
     /* Widget */
     div#du-body.du-body #du-players-container {
+        padding: 10px;
+    }
+
+    div#du-body.du-body .du-players {
         display: flex;
         justify-content: space-around;
+        flex-wrap: wrap;
+        margin: 10px 0;
     }
+
     div#du-body.du-body .du-player-card {
         border: #000 solid 2px;
         padding: 5px;
+        margin: 5px;
+        cursor: pointer;
     }
-    div#du-body.du-body .du-player-card.du-selected{
+
+    div#du-body.du-body .du-player-card.du-selected {
         border: red solid 2px;
     }
 
@@ -208,6 +218,57 @@
 
     div#du-body.du-body canvas {
         border: dashed #fff;
+    }
+
+    /* Modal */
+    div#du-body.du-body #du-confirmation-modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    /* Modal Content */
+    div#du-body.du-body .du-modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        max-width: 450px;
+        width: 50vw;
+    }
+
+    div#du-body.du-body .du-modal-content .du-button-holder {
+        border: #000 solid;
+    }
+
+    /* The Close Button */
+    div#du-body.du-body #du-modal-close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 35px;
+        font-weight: bold;
+        top: -20px;
+        position: relative;
+    }
+
+    div#du-body.du-body .du-modal-close:hover,
+    div#du-body.du-body .du-modal-close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    div#du-body.du-body #du-modal-footer {
+        display: flex;
+        flex-wrap: wrap;
     }
 
     /* Widget */

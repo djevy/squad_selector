@@ -8,13 +8,13 @@ $versionsFiles = array(
     "same-css" => false,
 );
 $versions = array();
-$versions["test1"] = array(
-    "id" => "test1",
-    "name" => "Test Version 1",
+$versions["England"] = array(
+    "id" => "England",
+    "name" => "England",
 );
-$versions["test2"] = array(
-    "id" => "test2",
-    "name" => "Test Version 2",
+$versions["Wales"] = array(
+    "id" => "Wales",
+    "name" => "Wales",
 );
 
-$versions = false;
+// $versions = false;
