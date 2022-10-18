@@ -90,46 +90,8 @@
 
     div#du-body.du-body #du-widget .du-container {
         color: #000;
-        display: none
-    }
-
-    div#du-body.du-body #du-search-box {
-        background-color: #000;
-        border-top: 5px solid <?php echo $widgetOptions["colors"]["main"]; ?>;
-        clear: both;
-        display: block;
-        margin: 10px auto;
-        padding: 10px 0;
-        text-align: center;
-        padding: 15px;
-    }
-
-    div#du-body.du-body #du-search,
-    div#du-body.du-body #du-search-go {
-        font-size: 1.1em;
-        height: 30px;
-        line-height: 1em;
-        padding: 4px 0;
-        text-align: center;
-    }
-
-    div#du-body.du-body #du-search {
-        text-transform: uppercase;
-        font-weight: bold;
-        margin-right: 1%;
-        width: 65%;
-    }
-
-    div#du-body.du-body #du-search-go {
-        color: #fff;
-        cursor: pointer;
-        font-weight: bold;
-        float: right;
-        width: 30%;
-        background: <?php echo $widgetOptions["colors"]["main"]; ?>;
-        -webkit-border-radius: 2em;
-        -moz-border-radius: 2em;
-        border-radius: 2em;
+        display: none;
+        background-color: bisque;
     }
 
     div#du-body.du-body #du-results {
@@ -220,6 +182,11 @@
         border: dashed #fff;
     }
 
+    div#du-body.du-body #du-average-list-holder {
+        border: #fff solid;
+        border-radius: 15px;
+        margin: 20px auto;
+    }
     /* Modal */
     div#du-body.du-body #du-confirmation-modal {
         display: none;

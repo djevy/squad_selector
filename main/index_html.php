@@ -35,7 +35,7 @@ if (
                 <img class="du-header-img" alt="<?php echo $project["name"]["headerAlt"]; ?>" src="<?php echo $IndexApp->formatImageUrl("img", "du" . $project["name"]["_bodyId"] . "_header.png"); ?>" />
                 <h2 id="du-widget-title"><?php echo $project["name"]["headerAlt"]; ?></h2>
                 <!-- <div id="du-widget-sub-title" class="du-text">We're here to help</div> -->
-                <div class="du-text">Pick your England Squad and share with your friends</div>
+                <div class="du-text">Pick your <?php echo $version["id"]; ?> Squad and share with your friends</div>
             </div>
         </div>
         <div id="du-widget">
@@ -46,8 +46,13 @@ if (
                         <button id="du-submit-button">Submit list</button>
                     </div>
                     <div id="du-players-container">
-                        <div class="du-text">Players <span id="du-selected-player-counter">0</span>/26</div>
-                        <div class="du-players" id="du-player"></div>
+                        <div class="du-text">Players <span id="du-selected-player-counter">0</span>/23</div>
+                        <div class="du-text">Forward</div>
+                        <div class="du-players" id="du-forward"></div>
+                        <div class="du-text">Midfielder</div>
+                        <div class="du-players" id="du-midfielder"></div>
+                        <div class="du-text">Defender</div>
+                        <div class="du-players" id="du-defender"></div>
                         <div class="du-text">Goal keepers <span id="du-selected-goal-keeper-counter">0</span>/3</div>
                         <div class="du-players" id="du-goal-keeper"></div>
                     </div>
@@ -57,6 +62,24 @@ if (
                         <button id="du-new-generate-button">Generate New Image</button>
                     </div>
                     <div id="du-image-output"></div>
+
+                    <div id="du-average-list-holder">
+                        <div class="du-instruction-text">User's most common team placement</div>
+                        <div id="du-average-list" class="du-list-holder">
+                            <div class="du-text">Players</div>
+                            <div class="du-text">Forward</div>
+                            <div class="du-players" id="du-average-forward"></div>
+                            <div class="du-text">Midfielder</div>
+                            <div class="du-players" id="du-average-midfielder"></div>
+                            <div class="du-text">Defender</div>
+                            <div class="du-players" id="du-average-defender"></div>
+                            <div class="du-text">Goal keepers</div>
+                            <div class="du-players" id="du-goal-average-keeper"></div>
+                        </div>
+                        <div class="du-button-holder">
+                            <button id="du-average-toggle">Hide average</button>
+                        </div>
+                    </div>
 
 
 

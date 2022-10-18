@@ -2,7 +2,13 @@
     /* widget related variables - INI */
     var selectedPlayerCount = 0;
     var selectedGoalKeeperCount = 0;
+    var requiredPlayerCount = 23;
+    var requiredGoalKeeperCount = 3;
+    var averagePlayerCount = 0;
+    var averageGoalKeeperCount = 0;
     var userVote = {};
+    var squadValid = false;
+    var highestVote;
     /* widget related variables - END */
     /* WIDGET FUNCTIONS - INI */
     var runWidgetStart = function() {
@@ -37,11 +43,25 @@
                 /***************************/
 
             <?php } ?>
+            du_validateSquad()
+            if (squadValid) {
+                generateButton();
+            }
 
-            generateButton();
         });
+        jq("#du-average-toggle", mainEl).click(function() {
+            jq("#du-average-list", mainEl).toggle();
+            if (jq("#du-average-list", mainEl).is(":visible")) {
+                jq("#du-average-toggle", mainEl).text("Hide average")
+            } else {
+                jq("#du-average-toggle", mainEl).text("Show average")
+            }
+        })
         jq("#du-submit-holder", mainEl).click(function() {
-            submitConfirmation();
+            du_validateSquad()
+            if (squadValid) {
+                submitConfirmation();
+            }
         })
         du_loadVotes();
 
@@ -57,12 +77,6 @@
         <?php if ($modules["newsletter"]) { ?>
             du_startNewsletter();
         <?php } ?>
-        <?php if ($modules['leaflet']) { ?>
-            du_startMap();
-        <?php } ?>
-        <?php if ($modules['charts']) { ?>
-            du_startCharts();
-        <?php } ?>
         wait(0);
     };
 
@@ -72,28 +86,72 @@
             type: "start",
             app: "<?php echo $projectTemp["nameSeo"]; ?>",
             vers: "<?php echo $version["id"]; ?>",
-            
+
         };
         getjson(headerData, du_createPlayerCards, du_fatalError);
     };
-    
-    var du_createPlayerCards = function(data) {
-        console.log(data.votes)
-
-        jq(data.votes).each(function(index, element) {
-            console.log(element)
-            if (element.player_role == "Striker") {
-                jq("#du-player", mainEl).append(`
+    var du_loadAverageVotes = function(data) {
+        // console.log("votes: ", data.votes);
+        var sortedVotes = [...data.votes];
+        sortedVotes.sort((a, b) => parseFloat(b.player_votes) - parseFloat(a.player_votes));
+        console.log("sorted votes: ", sortedVotes);
+        jq(sortedVotes).each(function(index, element) {
+            if (element.player_role == "Goal Keeper" && averageGoalKeeperCount < 3) {
+                jq("#du-goal-average-keeper", mainEl).append(`
                     <div class="du-player-card" data-player-id="${element.player_id}" data-player-name="${element.player_name}" data-player-role="${element.player_role}">
                         <div>${element.player_name}</div>
-                        <div>${element.player_role}</div>
                     </div>
                 `);
-            } else if (element.player_role == "Goal Keeper") {
+                averageGoalKeeperCount++
+            } else if (element.player_role == "Forward" && averagePlayerCount < 23) {
+                jq("#du-average-forward", mainEl).append(`
+                    <div class="du-player-card" data-player-id="${element.player_id}" data-player-name="${element.player_name}" data-player-role="${element.player_role}">
+                        <div>${element.player_name}</div>
+                    </div>
+                `);
+            } else if (element.player_role == "Midfielder" && averagePlayerCount < 23) {
+                jq("#du-average-midfielder", mainEl).append(`
+                    <div class="du-player-card" data-player-id="${element.player_id}" data-player-name="${element.player_name}" data-player-role="${element.player_role}">
+                        <div>${element.player_name}</div>
+                    </div>
+                `);
+            } else if (element.player_role == "Defender" && averagePlayerCount < 23) {
+                jq("#du-average-defender", mainEl).append(`
+                    <div class="du-player-card" data-player-id="${element.player_id}" data-player-name="${element.player_name}" data-player-role="${element.player_role}">
+                        <div>${element.player_name}</div>
+                    </div>
+                `);
+            }
+        })
+    }
+
+    var du_createPlayerCards = function(data) {
+        // console.log(data.votes);
+        du_loadAverageVotes(data);
+        jq(data.votes).each(function(index, element) {
+            // console.log(element)
+            if (element.player_role == "Goal Keeper") {
                 jq("#du-goal-keeper", mainEl).append(`
                     <div class="du-player-card" data-player-id="${element.player_id}" data-player-name="${element.player_name}" data-player-role="${element.player_role}">
                         <div>${element.player_name}</div>
-                        <div>${element.player_role}</div>
+                    </div>
+                `);
+            } else if (element.player_role == "Forward") {
+                jq("#du-forward", mainEl).append(`
+                    <div class="du-player-card" data-player-id="${element.player_id}" data-player-name="${element.player_name}" data-player-role="${element.player_role}">
+                        <div>${element.player_name}</div>
+                    </div>
+                `);
+            } else if (element.player_role == "Midfielder") {
+                jq("#du-midfielder", mainEl).append(`
+                    <div class="du-player-card" data-player-id="${element.player_id}" data-player-name="${element.player_name}" data-player-role="${element.player_role}">
+                        <div>${element.player_name}</div>
+                    </div>
+                `);
+            } else if (element.player_role == "Defender") {
+                jq("#du-defender", mainEl).append(`
+                    <div class="du-player-card" data-player-id="${element.player_id}" data-player-name="${element.player_name}" data-player-role="${element.player_role}">
+                        <div>${element.player_name}</div>
                     </div>
                 `);
             }
@@ -102,58 +160,65 @@
         jq("#du-players-container .du-player-card", mainEl).click(function() {
             // console.log(jq(this))
             var player = jq(this);
-            if (jq(this).hasClass("du-selected")) {
-                jq(this).removeClass("du-selected");
-                if(player.data("player-role") == "Striker") {
+            if (player.hasClass("du-selected")) {
+                player.removeClass("du-selected");
+                if (player.data("player-role") != "Goal Keeper") {
                     selectedPlayerCount--;
                     jq("#du-selected-player-counter", mainEl).text(selectedPlayerCount);
-                } else if(player.data("player-role") == "Goal Keeper") {
+                } else if (player.data("player-role") == "Goal Keeper") {
                     selectedGoalKeeperCount--;
                     jq("#du-selected-goal-keeper-counter", mainEl).text(selectedGoalKeeperCount);
                 }
-                
             } else {
-                jq(this).addClass("du-selected");
-                if(player.data("player-role") == "Striker") {
+                if (player.data("player-role") != "Goal Keeper" && selectedPlayerCount < 23) {
                     selectedPlayerCount++;
                     jq("#du-selected-player-counter", mainEl).text(selectedPlayerCount);
-                } else if(player.data("player-role") == "Goal Keeper") {
+                    player.addClass("du-selected");
+                } else if (player.data("player-role") == "Goal Keeper" && selectedGoalKeeperCount < 3) {
                     selectedGoalKeeperCount++;
                     jq("#du-selected-goal-keeper-counter", mainEl).text(selectedGoalKeeperCount);
+                    player.addClass("du-selected");
                 }
                 userVote[player.data("player-id")] = player.data("player-name");
             }
-
         });
     }
     // Load Votes
 
     // Generate Image
     var generateButton = function() {
+
         jq(".du-player-card:not(.du-selected)", mainEl).hide();
         generateImage();
         jq("#du-generate-button", mainEl).hide();
 
-
-
-        
-        jq("#du-user-list-holder", mainEl).hide();
+        jq("#du-average-list-holder", mainEl).hide();
         jq("#du-image-output", mainEl).hide();
         jq("#du-image-generate", mainEl).hide();
+        jq("#du-widget", mainEl).hide();
+
+        <?php if ($modules["newsletter"]) { ?>
+            /* move to where applies */
+            /******** add newsletter ********/
+            du_newsletterShowForm();
+            /***************************/
+        <?php } ?>
 
         if (jq("#du-nlf-skip", mainEl).css("display", "block") && jq("#du-nlf-skip", mainEl).length == 0) {
             jq("#du-image-output", mainEl).show();
             jq("#du-image-generate", mainEl).show();
             jq("#du-new-generate-button", mainEl).show();
             jq(".du-player-card:not(.du-selected)", mainEl).show();
+            jq("#du-average-list-holder", mainEl).show();
+            jq("#du-widget", mainEl).show();
         }
 
         jq("#du-new-generate-button", mainEl).click(function() {
             jq("#du-image-output", mainEl).empty();
-            jq("#du-user-list-holder", mainEl).show();
             jq("#du-generate-button", mainEl).show();
             jq("#du-new-generate-button", mainEl).hide();
             jq(".du-player-card:not(.du-selected)", mainEl).show();
+            jq("#du-average-list-holder", mainEl).show();
         })
     }
 
@@ -216,7 +281,14 @@
     // User Vote
 
     // Validate Squad
-
+    var du_validateSquad = function() {
+        if (selectedPlayerCount < requiredPlayerCount || selectedGoalKeeperCount < requiredGoalKeeperCount) {
+            alert(`Please select ${requiredPlayerCount - selectedPlayerCount} more players and ${requiredGoalKeeperCount - selectedGoalKeeperCount} more goal keepers.`);
+            squadValid = false;
+        } else {
+            squadValid = true;
+        }
+    }
     // Validate Squad
 
     var du_fatalError = function(err) {
@@ -232,7 +304,12 @@
     };
     <?php if ($modules["newsletter"]) { ?>
         var du_finished = function() {
-            alert("called du_finished")
+            jq("#du-average-list-holder", mainEl).show();
+            jq("#du-image-output", mainEl).show();
+            jq("#du-image-generate", mainEl).show();
+            jq("#du-new-generate-button", mainEl).show();
+            jq("#du-widget", mainEl).show();
+            jq(".du-player-card:not(.du-selected)", mainEl).show();
         }
     <?php } ?>
     <?php if ($modules["getJson"]) { ?>
