@@ -3,7 +3,7 @@
      * WIDGET CSS
      */
     div#du-body.du-body {
-        background: #f1f1f1;
+        background: #2b0417;
         border: 0;
         color: #fff;
         font-family: <?php echo $widgetOptions["fonts"]["main"]["font-family"]; ?>;
@@ -26,10 +26,13 @@
     }
 
     div#du-body.du-body .du-header {
-        background: url("<?php echo $IndexApp->formatImageUrl("img", "du" . $project["name"]["_bodyId"] . "_header_bg.png"); ?>") no-repeat scroll center center #000;
+        background: url("<?php echo $IndexApp->formatImageUrl("img", "du" . $project["name"]["_bodyId"] . "_header_bg.png"); ?>") no-repeat scroll center center #2b0417;
         background-size: 100% auto;
         font-size: 1.2em;
         display: block;
+        width: 100%;
+        max-width: 768px;
+        margin: auto;
     }
 
     div#du-body.du-body .du-header .du-container {
@@ -37,29 +40,38 @@
     }
 
     div#du-body.du-body .du-header .du-header-img {
-        width: 100%;
+        width: 50%;
         max-width: 380px;
-        margin: auto;
+        margin: 30px auto 0px;
     }
 
-    div#du-body.du-body .du-header .du-banner {
-        visibility: hidden;
-        color: #fff;
-        background: <?php echo $widgetOptions["colors"]["main"]; ?>;
-        margin: 0 auto;
-        font-weight: bold;
-        padding: 4px 10px 1px;
+    div#du-body.du-body #du-sub-header {
+        background-color: #890f34;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
-        text-transform: uppercase;
-        max-width: 200px;
-        font-size: 15px;
+        font-size: 1.2em;
+    }
+
+    div#du-body.du-body .du-football-fans {
+        min-width: 50px;
+        max-width: 75px;
+        width: 100%;
+        margin: 0 5px;
+    }
+    div#du-body.du-body #du-country-flag {
+        min-width: 50px;
+        max-width: 150px;
+        width: 25vw;
+        margin: auto;
     }
 
     div#du-body.du-body h2 {
         line-height: 1.1em;
         font-size: 2.6em;
         font-weight: bold;
-        margin: 15px auto;
+        margin: 15px auto 5px;
         text-align: center;
         color: #FFF;
     }
@@ -91,13 +103,13 @@
     div#du-body.du-body #du-widget .du-container {
         color: #000;
         display: none;
-        background-color: bisque;
+        background-color: #2b0417;
     }
 
     div#du-body.du-body #du-results {
         display: none;
         font-size: 1.1em;
-        padding: 0 0 30px;
+        padding: 0;
         text-align: center;
     }
 
@@ -107,7 +119,7 @@
 
     div#du-body.du-body #du-footer {
         text-align: center;
-        background: #000
+        background: #2b0417;
     }
 
     div#du-body.du-body .du-footer-txt {
@@ -120,7 +132,17 @@
     }
 
     /* Widget */
+    div#du-body.du-body #du-results .du-text {
+        color: #FFF;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
     div#du-body.du-body #du-players-container {
+        padding: 10px;
+    }
+
+    div#du-body.du-body #du-average-list-holder {
         padding: 10px;
     }
 
@@ -129,17 +151,47 @@
         justify-content: space-around;
         flex-wrap: wrap;
         margin: 10px 0;
+        padding: 10px;
+        border-radius: 10px;
+        background-color: #FFF;
     }
 
     div#du-body.du-body .du-player-card {
-        border: #000 solid 2px;
-        padding: 5px;
+        max-width: 100px;
+        width: 100%;
+        height: 50px;
+        padding: 5px 10px;
         margin: 5px;
         cursor: pointer;
+        border-radius: 10px;
+        background-color: #e9e9e9;
+        color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    div#du-body.du-body #du-average-list .du-player-card {
+        cursor: default;
+
     }
 
+
     div#du-body.du-body .du-player-card.du-selected {
-        border: red solid 2px;
+        background-color: #ff004c;
+        color: #fff;
+        font-weight: bold;
+    }
+    div#du-body.du-body #du-goal-keeper.du-selected {
+        background-color: #ff004c;
+    }
+    div#du-body.du-body #du-defender .du-selected {
+        background-color: #06bca6;
+    }
+    div#du-body.du-body #du-midfielder .du-selected {
+        background-color: #a764a9;
+    }
+    div#du-body.du-body #du-forward .du-selected {
+        background-color: #e4842e;
     }
 
 
@@ -154,10 +206,16 @@
         cursor: pointer;
     }
 
-    div#du-body.du-body .du-button-holder button {
-        background-color: #fff;
+    div#du-body.du-body .du-button-holder div {
         cursor: pointer;
     }
+    div#du-body.du-body .du-button-holder:hover {
+        background-color: #ff004c;
+        color: #fff;
+    }
+    /* div#du-body.du-body .du-button-holder button:hover {
+        background-color: #ff004c;
+    } */
 
     div#du-body.du-body #du-new-generate-button {
         display: none;
@@ -165,7 +223,7 @@
 
     div#du-body.du-body .du-instruction-text {
         text-align: center;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(255, 255, 255, 0.2);
         color: #fff;
         width: 100%;
         padding: 10px 0px;
@@ -182,11 +240,71 @@
         border: dashed #fff;
     }
 
+    div#du-body.du-body .du-football-icon {
+        margin: 0px auto 15px;
+        width: 100px;
+    }
     div#du-body.du-body #du-average-list-holder {
         border: #fff solid;
         border-radius: 15px;
         margin: 20px auto;
     }
+    div#du-body.du-body .du-holder .du-player-title {
+        border-radius: 10px;
+        width: 150px;
+        padding: 5px 10px;
+        margin: auto;
+    }
+    div#du-body.du-body #du-players-container .du-player-title:nth-child(1) {
+        background-color: #ff004c;
+    }
+    div#du-body.du-body #du-players-container .du-players:nth-child(2) {
+        border: #ff004c 3px solid;
+    }
+    div#du-body.du-body #du-players-container .du-player-title:nth-child(5) {
+        background-color: #06bca6;
+    }
+    div#du-body.du-body #du-players-container .du-players:nth-child(6) {
+        border: #06bca6 3px solid;
+    }
+    div#du-body.du-body #du-players-container .du-player-title:nth-child(8) {
+        background-color: #a764a9;
+    }
+    div#du-body.du-body #du-players-container .du-players:nth-child(9) {
+        border: #a764a9 3px solid;
+    }
+    div#du-body.du-body #du-players-container .du-player-title:nth-child(11) {
+        background-color: #e4842e;
+    }
+    div#du-body.du-body #du-players-container .du-players:nth-child(12) {
+        border: #e4842e 3px solid;
+    }
+
+    div#du-body.du-body #du-average-list-holder .du-player-title:nth-child(1) {
+        background-color: #ff004c;
+    }
+    div#du-body.du-body #du-average-list-holder .du-players:nth-child(2) {
+        border: #ff004c 3px solid;
+    }
+    div#du-body.du-body #du-average-list-holder .du-player-title:nth-child(3) {
+        background-color: #06bca6;
+    }
+    div#du-body.du-body #du-average-list-holder .du-players:nth-child(4) {
+        border: #06bca6 3px solid;
+    }
+    div#du-body.du-body #du-average-list-holder .du-player-title:nth-child(5) {
+        background-color: #a764a9;
+    }
+    div#du-body.du-body #du-average-list-holder .du-players:nth-child(6) {
+        border: #a764a9 3px solid;
+    }
+    div#du-body.du-body #du-average-list-holder .du-player-title:nth-child(7) {
+        background-color: #e4842e;
+    }
+    div#du-body.du-body #du-average-list-holder .du-players:nth-child(8) {
+        border: #e4842e 3px solid;
+    }
+
     /* Modal */
     div#du-body.du-body #du-confirmation-modal {
         display: none;
@@ -231,6 +349,7 @@
         color: #000;
         text-decoration: none;
         cursor: pointer;
+        background-color: #ff004c;
     }
 
     div#du-body.du-body #du-modal-footer {

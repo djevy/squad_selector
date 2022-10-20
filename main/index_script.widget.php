@@ -22,13 +22,7 @@
             }
         });
         jq("#du-generate-button", mainEl).click(function() {
-            <?php if ($modules["newsletter"]) { ?>
-                /* move to where applies */
-                /******** add newsletter ********/
-                du_newsletterShowForm();
-                du_newsletterClass.addPostcode("postcode");
-                /***************************/
-            <?php } ?>
+
             <?php if ($modules['lotame']) { ?>
                 /* move to where applies */
                 /******** add lotame ********/
@@ -94,10 +88,10 @@
         // console.log("votes: ", data.votes);
         var sortedVotes = [...data.votes];
         sortedVotes.sort((a, b) => parseFloat(b.player_votes) - parseFloat(a.player_votes));
-        console.log("sorted votes: ", sortedVotes);
+        // console.log("sorted votes: ", sortedVotes);
         jq(sortedVotes).each(function(index, element) {
             if (element.player_role == "Goal Keeper" && averageGoalKeeperCount < 3) {
-                jq("#du-goal-average-keeper", mainEl).append(`
+                jq("#du-average-goalkeeper", mainEl).append(`
                     <div class="du-player-card" data-player-id="${element.player_id}" data-player-name="${element.player_name}" data-player-role="${element.player_role}">
                         <div>${element.player_name}</div>
                     </div>
@@ -259,7 +253,7 @@
             jq("#du-confirmation-modal", mainEl).hide();
             jq("#du-submit-holder", mainEl).hide();
 
-            console.log("Vote: ", userVote);
+            // console.log("Vote: ", userVote);
 
             wait(0);
             var headerData = {
@@ -283,7 +277,7 @@
     // Validate Squad
     var du_validateSquad = function() {
         if (selectedPlayerCount < requiredPlayerCount || selectedGoalKeeperCount < requiredGoalKeeperCount) {
-            alert(`Please select ${requiredPlayerCount - selectedPlayerCount} more players and ${requiredGoalKeeperCount - selectedGoalKeeperCount} more goal keepers.`);
+            alert(`Please select ${requiredGoalKeeperCount - selectedGoalKeeperCount} more goal keepers and ${requiredPlayerCount - selectedPlayerCount} other players.`);
             squadValid = false;
         } else {
             squadValid = true;

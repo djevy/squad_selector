@@ -4,7 +4,7 @@
  * generates separate files by version
  */
 $versionsFiles = array(
-    "same-js" => false,
+    "same-js" => true,
     "same-css" => false,
 );
 $versions = array();
