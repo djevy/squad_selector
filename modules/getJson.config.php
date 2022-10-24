@@ -7,9 +7,9 @@
 
 $modulesData["getJson"] = array(
     "local"  => array(
-        "json" => "../" . $project["urlsLocal"]["url"] . $project["urlsLocal"]["proj"] . "data/"
+        "json" => $project["urlsLocal"]["json"]
     ),
     "live" => array(
-        "json" => $project["urls"]["img"]
+        "json" => $project["urls"]["json"]
     ),
 );

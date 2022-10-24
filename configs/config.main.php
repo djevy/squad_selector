@@ -69,6 +69,7 @@ $project["urls"] = array(
     "url" => $url_server,
     "proj" => $projectFolder . "/",
     "img" => "../" . $base_s3 . $projectFolder . "/img/",
+    "json" => "../../" . $base_s3 . $projectFolder . "/data/",
     "img_file" =>  $base_s3_url . $projectFolder . "/img/",
     "def_img" => $base_s3 . "_img_pkg/base/",
     "def_img_file" => $base_s3_url . "projects/_img_pkg/base/",
@@ -93,6 +94,7 @@ if (!$local) {
         "url" => $url_server,
         "proj" => $projectFolder,
         "img" => $base_s3 . "img/" . $projectFolder . "/",
+        "json" => $url_server .  $projectFolder . "/",
         "def_img" => $base_s3 . "img/base/",
         "js" => $base_s3 . "js/",
         "toSave" => array(

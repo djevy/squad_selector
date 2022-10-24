@@ -11,6 +11,7 @@ dist/
 code_local/
 code_preview/
 code_to_min/
+sql/insert.php
 
 # Compiled Java class files
 *.class

@@ -1,6 +1,12 @@
 
-Title: World Cup Squad Selector 2022 - Interactive
-Preview: https://trinitymirrordataunit.com/preview/code_squad_selector.html
-RON - 
-REG - 
-NAT - 
+Title: World Cup Squad Selector England 2022 - Interactive
+Preview: https://trinitymirrordataunit.com/preview/code_squad_selector_England.html
+RON - 7727341
+REG - 25313443
+NAT - 28289328
+
+Title: World Cup Squad Selector Wales 2022 - Interactive
+Preview: https://trinitymirrordataunit.com/preview/code_squad_selector_Wales.html
+RON - 7727382
+REG - 25313505
+NAT - 28289352

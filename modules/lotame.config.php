@@ -10,7 +10,7 @@ $modulesData["lotame"] = array(
         "main" => array(
             "clientID" => "7101",
             "lotameID" => "9458",
-            "pixelID" => "100175523" // Get you ID here - https://docs.google.com/spreadsheets/d/1yT1hXRe4uSRIKjU13xYqwyYltkjSYv2XS5PA0WY1F6A/edit#gid=0
+            "pixelID" => "100508028" // Get you ID here - https://docs.google.com/spreadsheets/d/1yT1hXRe4uSRIKjU13xYqwyYltkjSYv2XS5PA0WY1F6A/edit#gid=0
         ),
     ),
     "files"  => array(
