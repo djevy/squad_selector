@@ -11,10 +11,12 @@ $versions = array();
 $versions["England"] = array(
     "id" => "England",
     "name" => "England",
+    "pixelID" => 100508028,
 );
 $versions["Wales"] = array(
     "id" => "Wales",
     "name" => "Wales",
+    "pixelID" => 100508059,
 );
 
 // $versions = false;

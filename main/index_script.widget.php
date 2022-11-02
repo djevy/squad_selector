@@ -11,7 +11,7 @@
     var highestVote;
     var uuid = false;
     var ref = false;
-    var vers = "<?php echo $version["id"]; ?>"
+    var vers = "<?php echo $version["id"]; ?>";
     /* widget related variables - END */
     /* WIDGET FUNCTIONS - INI */
     var runWidgetStart = function() {
@@ -219,6 +219,7 @@
             };
             var hrefString = JSON.stringify(hrefObject);
             var hrefEncoded = btoa(hrefString);
+            console.log(hrefEncoded);
             var shareCard = "https://trinitymirrordataunit.com/squad_selector/share/shareCard.php?data=" + hrefEncoded;
 
             var twitterHref = "https://twitter.com/intent/tweet?" +

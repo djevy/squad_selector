@@ -82,7 +82,9 @@ if (
                                 <div id="du-forward-title" class="du-text du-player-title">FORWARDS</div>
                                 <div class="du-players" id="du-average-forward"></div>
                             </div>
-                            <div id="du-average-image-output" class="du-image-output"><div class='du-instruction-text'>Save the image below or <a target="_blank" class="du-twitter-share" id="du-twitter-button-average">share our team <img class="du-twitter-icon" src="<?php echo $IndexApp->formatImageUrl("img", "du" . $project["name"]["_bodyId"] . "_twitter.png"); ?>" alt="Twitter logo"/></a></div></div>
+                            <div id="du-average-image-output" class="du-image-output"><div class='du-instruction-text'>
+                            This is the team selected by <?php echo $version["id"]; ?> fans across our survey <br/>
+                                Save the image below or <a target="_blank" class="du-twitter-share" id="du-twitter-button-average">share our team <img class="du-twitter-icon" src="<?php echo $IndexApp->formatImageUrl("img", "du" . $project["name"]["_bodyId"] . "_twitter.png"); ?>" alt="Twitter logo"/></a></div></div>
                         </div>
 
                         <div class="du-button-holder">

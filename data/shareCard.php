@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $local = false;
 $paths = array(
     "main" => "https://trinitymirrordataunit.com/squad_selector/",
@@ -10,23 +13,34 @@ if ($local) {
 }
 ob_start();
 
+echo "<pre>";
 $formGetData = filter_input_array(INPUT_GET, FILTER_SANITIZE_ENCODED);
+if( (!isset($formGetData["data"]) || empty($formGetData["data"]))) {
+    die("no data");
+}
+
+$formGetData["data"] = str_replace("%3D", "=", $formGetData["data"]);
+// print_r($formGetData);
+
 $json = base64_decode($formGetData["data"]);
+// print_r($json);
 $formData = json_decode($json, true);
+// print_r($formData);
+if (
+    (!isset($formData["id"]) || empty($formData["id"])) &&
+    (!isset($formData["ref"]) || empty($formData["ref"])) &&
+    (!isset($formData["vers"]) || empty($formData["vers"])) &&
+    (!isset($formData["redi"]) || empty($formData["redi"]))
+) {
+    die("wrong data");
+}
 
 $id = $formData["id"];
 $ref = $formData["ref"];
 $vers = $formData["vers"];
 $redi = $formData["redi"];
 
-if (
-    (!isset($id) || empty($id)) &&
-    (!isset($ref) || empty($ref)) &&
-    (!isset($vers) || empty($vers)) &&
-    (!isset($redi) || empty($redi))
-) {
-    die("wrong data");
-}
+
 
 $config = file_get_contents($paths["s3"]);
 $config = json_decode($config, true);
@@ -41,9 +55,11 @@ $config = $config[$vers];
 
 
 $imageUrl = $paths["main"] . "share_" . $id . ".png";
+$description = $config["description"];
 
 if ($ref === "average") {
     $imageUrl = $paths["main"] . "share_avg_" . $id . ".png";
+    $description = $config["descriptionAverage"];
 }
 // print_r($imageUrl);
 ?>
@@ -62,7 +78,7 @@ if ($ref === "average") {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="<?php echo $config["twitter_site"]; ?>" />
     <meta name="twitter:title" content="<?php echo $config["title"]; ?>" />
-    <meta name="twitter:description" content="<?php echo $config["description"]; ?>" />
+    <meta name="twitter:description" content="<?php echo $description; ?>" />
     <meta name="twitter:image" content="<?php echo $imageUrl; ?>" />
     <meta name="twitter:url" content="<?php echo $redi; ?>" />
     <title>Share Card</title>
