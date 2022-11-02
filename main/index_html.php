@@ -44,16 +44,19 @@ if (
 
                 <div id="du-results">
                     <div id="du-players-container" class="du-holder">
-                        <div class="du-text du-player-title">GOALKEEPERS <span id="du-selected-goal-keeper-counter">0</span>/3</div>
+                        <div class="du-text du-player-title">GOALKEEPERS<div class="du-player-counter"> <span id="du-selected-goal-keeper-counter">0</span>/3</div>
+                        </div>
                         <div class="du-players" id="du-goal-keeper"></div>
                         <img alt="Football icon" class="du-football-icon" src="<?php echo $IndexApp->formatImageUrl("img", "du" . $project["name"]["_bodyId"] . "_icon1.png"); ?>" />
-                        <div class="du-text">PLAYERS <span id="du-selected-player-counter">0</span>/23</div>
+                        <div class="du-text du-player-counter">PLAYERS <span class="du-selected-player-counter">0</span>/23</div>
                         <div class="du-text du-player-title">DEFENDERS</div>
                         <div class="du-players" id="du-defender"></div>
                         <img alt="Football icon" class="du-football-icon" src="<?php echo $IndexApp->formatImageUrl("img", "du" . $project["name"]["_bodyId"] . "_icon2.png"); ?>" />
+                        <div class="du-text du-player-counter">PLAYERS <span class="du-selected-player-counter">0</span>/23</div>
                         <div class="du-text du-player-title">MIDFIELDERS</div>
                         <div class="du-players" id="du-midfielder"></div>
                         <img alt="Football icon" class="du-football-icon" src="<?php echo $IndexApp->formatImageUrl("img", "du" . $project["name"]["_bodyId"] . "_icon3.png"); ?>" />
+                        <div class="du-text du-player-counter">PLAYERS <span class="du-selected-player-counter">0</span>/23</div>
                         <div class="du-text du-player-title">FORWARDS</div>
                         <div class="du-players" id="du-forward"></div>
                         <img alt="Football icon" class="du-football-icon" src="<?php echo $IndexApp->formatImageUrl("img", "du" . $project["name"]["_bodyId"] . "_icon4.png"); ?>" />
@@ -62,28 +65,29 @@ if (
                     <div id="du-submit-holder" class="du-button-holder">
                         <div id="du-submit-button">Submit list</div>
                     </div>
-                    <div id="du-image-generate" class="du-button-holder">
-                        <div id="du-generate-button">Generate Image</div>
-                        <div id="du-new-generate-button">Generate New Image</div>
-                    </div>
 
-                    <div id="du-image-output"></div>
+                    <div id="du-image-output" class="du-image-output"><div class='du-instruction-text'>Save the image below or <a target="_blank" class="du-twitter-share" id="du-twitter-button-user">share your team <img class="du-twitter-icon" src="<?php echo $IndexApp->formatImageUrl("img", "du" . $project["name"]["_bodyId"] . "_twitter.png"); ?>" alt="Twitter logo"/></a></div></div>
 
-                    <div id="du-average-list-holder" class="du-holder">
-                        <div class="du-instruction-text">User's most common team placement</div>
-                        <div id="du-average-list" class="du-list-holder">
-                            <div id="du-goalkeeper-title" class="du-text du-player-title">GOALKEEPERS</div>
-                            <div class="du-players" id="du-average-goalkeeper"></div>
-                            <div id="du-defender-title" class="du-text du-player-title">DEFENDERS</div>
-                            <div class="du-players" id="du-average-defender"></div>
-                            <div id="du-midfielder-title" class="du-text du-player-title">MIDFIELDERS</div>
-                            <div class="du-players" id="du-average-midfielder"></div>
-                            <div id="du-forward-title" class="du-text du-player-title">FORWARDS</div>
-                            <div class="du-players" id="du-average-forward"></div>
+                    <div id="du-reader-average">
+                        <div id="du-average-list-holder" class="du-holder">
+
+                            <div id="du-average-list" class="du-list-holder">
+                                <div class="du-instruction-text">Most picked squad by readers</div>
+                                <div id="du-goalkeeper-title" class="du-text du-player-title">GOALKEEPERS</div>
+                                <div class="du-players" id="du-average-goalkeeper"></div>
+                                <div id="du-defender-title" class="du-text du-player-title">DEFENDERS</div>
+                                <div class="du-players" id="du-average-defender"></div>
+                                <div id="du-midfielder-title" class="du-text du-player-title">MIDFIELDERS</div>
+                                <div class="du-players" id="du-average-midfielder"></div>
+                                <div id="du-forward-title" class="du-text du-player-title">FORWARDS</div>
+                                <div class="du-players" id="du-average-forward"></div>
+                            </div>
+                            <div id="du-average-image-output" class="du-image-output"><div class='du-instruction-text'>Save the image below or <a target="_blank" class="du-twitter-share" id="du-twitter-button-average">share our team <img class="du-twitter-icon" src="<?php echo $IndexApp->formatImageUrl("img", "du" . $project["name"]["_bodyId"] . "_twitter.png"); ?>" alt="Twitter logo"/></a></div></div>
                         </div>
-                    </div>
-                    <div class="du-button-holder">
-                        <div id="du-average-toggle">Hide average</div>
+
+                        <div class="du-button-holder">
+                            <div id="du-average-toggle">Hide average</div>
+                        </div>
                     </div>
 
 
@@ -111,7 +115,6 @@ if (
 
     <div id="du-footer" style="display:none">
         <div class="du-container">
-            <!-- <div class="du-footer-txt">* Based on prices set by Ofgem</div> -->
             <?php
             if (
                 $modules["social"] &&

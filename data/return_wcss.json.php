@@ -59,7 +59,7 @@ if ($localTry) {
         $http_origin = $_SERVER['HTTP_ORIGIN'];
     }
 
-	
+
     $http_ok = "";
     include_once '../../_base/publications.php';
 
@@ -73,38 +73,13 @@ if ($localTry) {
 
 /* OPTIONS */
 $availableTypes = array(
-    "start", "vote",
+    "start", "vote", "image",
 );
-/* INPUT VARIABLES */
-// $baseFilter = array(
-//     'filter' => FILTER_SANITIZE_STRING,
-//     'flags' => FILTER_FLAG_NO_ENCODE_QUOTES
-// );
-// $baseArrayFilter = array(
-//     'filter' => FILTER_SANITIZE_STRING,
-//     'flags' => FILTER_FLAG_NO_ENCODE_QUOTES | FILTER_REQUIRE_ARRAY
-// );
-// $myInputsArgs = array(
-//     "type" => $baseFilter,
-//     "app" => $baseFilter,
-//     "votes" => $baseFilter,
-// );
-// $myInputs = filter_input_array(INPUT_POST, $myInputsArgs);
-// if (is_null($myInputs)) {
-//     $myInputs = array();
-// }
+
 if (!isset($data['type']) || !in_array($data['type'], $availableTypes)) {
     die($dieMsg['invalid_type']);
 }
 
-// if (
-//     !isset($myInputs["type"]) ||
-//     !in_array($myInputs["type"], $availableTypes)
-// ) {
-//     die($dieMsg["invalid_type"]);
-// } else if ($myInputs["type"] == "vote" && !isset($myInputs['votes'])) {
-//     die($dieMsg["missing_data"]);
-// }
 
 /* READY TO START */
 include_once "return" . $appOptions["short"] . ".json.fun.php";
@@ -122,6 +97,15 @@ switch ($data['type']) {
         break;
     case "start":
         $res = $SquadSelectorDataApp->readResults($data);
+        break;
+    case "image":
+        if (!isset($data['info']) || !is_array($data['info'])) {
+            die($dieMsg['invalid_type']);
+        }
+        $res = $SquadSelectorDataApp->storeImage($data["info"]);
+        $res = array(
+            "url" => $data["info"]["url"]
+        );
         break;
 }
 

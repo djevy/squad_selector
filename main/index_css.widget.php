@@ -60,6 +60,7 @@
         width: 100%;
         margin: 0 5px;
     }
+
     div#du-body.du-body #du-country-flag {
         min-width: 50px;
         max-width: 150px;
@@ -169,10 +170,28 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
     }
-    div#du-body.du-body #du-average-list .du-player-card {
-        cursor: default;
 
+    div#du-body.du-body .du-player-image {
+        max-width: 100px;
+        width: 100%;
+        /* height: 50px; */
+    }
+
+    div#du-body.du-body .du-average-player-card {
+        max-width: 100px;
+        width: 100%;
+        height: 50px;
+        padding: 5px 10px;
+        margin: 5px;
+        cursor: default;
+        border-radius: 10px;
+        background-color: #e9e9e9;
+        color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
 
@@ -181,15 +200,19 @@
         color: #fff;
         font-weight: bold;
     }
+
     div#du-body.du-body #du-goal-keeper.du-selected {
         background-color: #ff004c;
     }
+
     div#du-body.du-body #du-defender .du-selected {
         background-color: #06bca6;
     }
+
     div#du-body.du-body #du-midfielder .du-selected {
         background-color: #a764a9;
     }
+
     div#du-body.du-body #du-forward .du-selected {
         background-color: #e4842e;
     }
@@ -209,13 +232,19 @@
     div#du-body.du-body .du-button-holder div {
         cursor: pointer;
     }
+
     div#du-body.du-body .du-button-holder:hover {
         background-color: #ff004c;
         color: #fff;
     }
+
     /* div#du-body.du-body .du-button-holder button:hover {
         background-color: #ff004c;
     } */
+
+    div#du-body.du-body #du-image-generate {
+        display: none;
+    }
 
     div#du-body.du-body #du-new-generate-button {
         display: none;
@@ -228,80 +257,133 @@
         width: 100%;
         padding: 10px 0px;
         margin: 10px auto;
+        display: none;
+    }
+    div#du-body.du-body .du-twitter-icon {
+        display: inline-block;
+        margin-left: 2px;
     }
 
-    div#du-body.du-body #du-image-output {
+    div#du-body.du-body .du-image-output {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
-    div#du-body.du-body canvas {
+    div#du-body.du-body #du-image-output canvas {
         border: dashed #fff;
+        max-width: 95%;
+    }
+
+    div#du-body.du-body #du-average-image-output canvas {
+        max-width: 100%;
+    }
+    div#du-body.du-body .du-twitter-share {
+        padding: 5px 10px;
+        max-width: fit-content;
+        width: 100%;
+        margin: 5px auto;
+        background-color: #fff;
+        color: #000;
+        border-radius: 10px;
+        border: #fff solid 2px;
+        display: block;
+        text-decoration: none;
     }
 
     div#du-body.du-body .du-football-icon {
         margin: 0px auto 15px;
-        width: 100px;
+        max-width: 100px;
+        width: 100%;
     }
+
+    div#du-body.du-body #du-reader-average {
+        display: none;
+    }
+
     div#du-body.du-body #du-average-list-holder {
         border: #fff solid;
         border-radius: 15px;
         margin: 20px auto;
     }
+
     div#du-body.du-body .du-holder .du-player-title {
         border-radius: 10px;
-        width: 150px;
+        max-width: 150px;
+        width: 100%;
         padding: 5px 10px;
         margin: auto;
+        word-break: break-all;
+    }
+
+    
+    div#du-body.du-body #du-players-container  {
+        background-color: #2b0417;
     }
     div#du-body.du-body #du-players-container .du-player-title:nth-child(1) {
         background-color: #ff004c;
     }
+
     div#du-body.du-body #du-players-container .du-players:nth-child(2) {
         border: #ff004c 3px solid;
     }
+
     div#du-body.du-body #du-players-container .du-player-title:nth-child(5) {
         background-color: #06bca6;
     }
+
     div#du-body.du-body #du-players-container .du-players:nth-child(6) {
         border: #06bca6 3px solid;
     }
-    div#du-body.du-body #du-players-container .du-player-title:nth-child(8) {
+
+    div#du-body.du-body #du-players-container .du-player-title:nth-child(9) {
         background-color: #a764a9;
     }
-    div#du-body.du-body #du-players-container .du-players:nth-child(9) {
+
+    div#du-body.du-body #du-players-container .du-players:nth-child(10) {
         border: #a764a9 3px solid;
     }
-    div#du-body.du-body #du-players-container .du-player-title:nth-child(11) {
+
+    div#du-body.du-body #du-players-container .du-player-title:nth-child(13) {
         background-color: #e4842e;
     }
-    div#du-body.du-body #du-players-container .du-players:nth-child(12) {
+
+    div#du-body.du-body #du-players-container .du-players:nth-child(14) {
         border: #e4842e 3px solid;
     }
 
-    div#du-body.du-body #du-average-list-holder .du-player-title:nth-child(1) {
+    div#du-body.du-body #du-average-list  {
+        background-color: #2b0417;
+    }
+    div#du-body.du-body #du-average-list-holder .du-player-title:nth-child(2) {
         background-color: #ff004c;
     }
-    div#du-body.du-body #du-average-list-holder .du-players:nth-child(2) {
+
+    div#du-body.du-body #du-average-list-holder .du-players:nth-child(3) {
         border: #ff004c 3px solid;
     }
-    div#du-body.du-body #du-average-list-holder .du-player-title:nth-child(3) {
+
+    div#du-body.du-body #du-average-list-holder .du-player-title:nth-child(4) {
         background-color: #06bca6;
     }
-    div#du-body.du-body #du-average-list-holder .du-players:nth-child(4) {
+
+    div#du-body.du-body #du-average-list-holder .du-players:nth-child(5) {
         border: #06bca6 3px solid;
     }
-    div#du-body.du-body #du-average-list-holder .du-player-title:nth-child(5) {
+
+    div#du-body.du-body #du-average-list-holder .du-player-title:nth-child(6) {
         background-color: #a764a9;
     }
-    div#du-body.du-body #du-average-list-holder .du-players:nth-child(6) {
+
+    div#du-body.du-body #du-average-list-holder .du-players:nth-child(7) {
         border: #a764a9 3px solid;
     }
-    div#du-body.du-body #du-average-list-holder .du-player-title:nth-child(7) {
+
+    div#du-body.du-body #du-average-list-holder .du-player-title:nth-child(8) {
         background-color: #e4842e;
     }
-    div#du-body.du-body #du-average-list-holder .du-players:nth-child(8) {
+
+    div#du-body.du-body #du-average-list-holder .du-players:nth-child(9) {
         border: #e4842e 3px solid;
     }
 
@@ -420,4 +502,12 @@
 
     div#du-body.du-body.du-mobile div.du-header {
         background-size: auto cover;
+    }
+
+    div#du-body.du-body.du-mobile .du-player-card {
+        max-width: 90px;
+    }
+
+    div#du-body.du-body.du-mobile .du-header .du-header-img {
+        width: 75%;
     }

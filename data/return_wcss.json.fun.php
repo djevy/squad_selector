@@ -77,7 +77,7 @@ class SquadSelectorApp extends BaseClass
 
     function storeReply($data)
     {
-        print_r($data);
+        // print_r($data);
         $valid_what = array("votes");
         if (!isset($data['app']) || !isset($data['votes']) || (!isset($data['what']) && in_array($data['what'], $valid_what))) {
             return array("error" => "Missing data 1");
@@ -86,6 +86,36 @@ class SquadSelectorApp extends BaseClass
 
         return array("ok");
     }
+
+
+    private function insertImageData($url, $id, $ref)
+    {
+        if (!is_object($this->DB)) {
+            $this->connectDb();
+        }
+        $sql = "INSERT INTO
+                `wcss_images` (`url`, `id`, `ref`)
+                VALUES (?,?,?);";
+
+        $query = $this->DB->Prepare($sql);
+
+        $this->DB->execute($query, array($url, $id, $ref));
+        return $this->DB->Affected_Rows();
+    }
+    function storeImage($data)
+    {
+        // print_r($data);
+        if(!isset($data["url"]) || !isset($data["id"]) || !isset($data["ref"])) {
+            return array("error" => "invalid");
+        }
+
+        $rows = $this->insertImageData($data["url"], $data["id"], $data["ref"]);
+
+        return array(
+            "Success" => $rows <= 0 ? "false" : "true"
+        );
+    }
+
 
 
     function readyVoteData($data)

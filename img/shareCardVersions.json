@@ -1,0 +1,16 @@
+{
+    "England": {
+        "title": "World Cup Squad Selector",
+        "description": "This is my choice for the England World Cup Squad, so what's yours?",
+        "siteName": "Squad Selector",
+        "twitter_site": "trinitymirrordataunit.com",
+        "twitter_site_url":"https://trinitymirrordataunit.com"
+    },
+    "Wales": {
+        "title": "World Cup Squad Selector",
+        "description": "This is the communities choice for the Wales World Cup Squad, so what's yours?",
+        "siteName": "Squad Selector",
+        "twitter_site": "trinitymirrordataunit.com",
+        "twitter_site_url":"https://trinitymirrordataunit.com"
+    }
+}

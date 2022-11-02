@@ -20,8 +20,8 @@
             }
             const thisBtn = btns[btnKey];
             if (
-                thisBtn == "Facebook" &&
-                !socialData.FBappID
+                (thisBtn == "Facebook" &&
+                    !socialData.FBappID) || thisBtn == "Twitter"
             ) {
                 continue;
 
@@ -66,9 +66,13 @@
         let thisTitle = "Share on " + btnType;
         switch (btnType) {
             case "Twitter":
+                var shareCard = socialData.card.replace("##uuid##", uuid);
+                shareCard = socialData.card.replace("##ref##", ref);
+                shareCard = socialData.card.replace("##vers##", vers);
+                console.log(shareCard)
                 finalHref = "https://twitter.com/intent/tweet?" +
-                    "text=" + encodeURIComponent(socialData.message) +
-                    "&url=" + useEncodedDocUrl;
+                    "text=" + encodeURIComponent(socialData.message + " " + useDocUrl) +
+                    "&url=" + encodeURIComponent(shareCard);
                 if (
                     typeof socialData.hash != "undefined" &&
                     socialData.hash
