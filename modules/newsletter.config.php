@@ -6,7 +6,7 @@
  */
 
 $modulesData["newsletter"] = array(
-    "main" => "player_ratings_mirror",       // "birm_whatson", // loads first
+    "main" => $version["newsletter"],       // "birm_whatson", // loads first
     "default" => false,    // default newsletter, loads if no main newsletter is available "mirror_euro_20",
     "skin" => false,       // Skin version. "normal" (false), "short", "skinny"
     "style" => false,      // style version "light" (false), "dark",

@@ -87,18 +87,21 @@
                         <div>${element.player_name}</div>
                     </div>
                 `);
+                averagePlayerCount++
             } else if (element.player_role == "Midfielder" && averagePlayerCount < 23) {
                 jq("#du-average-midfielder", mainEl).append(`
                     <div class="du-average-player-card" data-player-id="${element.player_id}" data-player-name="${element.player_name}" data-player-role="${element.player_role}">
                         <div>${element.player_name}</div>
                     </div>
                 `);
+                averagePlayerCount++
             } else if (element.player_role == "Defender" && averagePlayerCount < 23) {
                 jq("#du-average-defender", mainEl).append(`
                     <div class="du-average-player-card" data-player-id="${element.player_id}" data-player-name="${element.player_name}" data-player-role="${element.player_role}">
                         <div>${element.player_name}</div>
                     </div>
                 `);
+                averagePlayerCount++
             }
         })
     }
@@ -168,12 +171,13 @@
         jq("#du-average-list", mainEl).show();
         jq("#du-reader-average", mainEl).show();
 
-        jq("#du-average-list", mainEl).css("width", "750px");
+        jq(".du-football-icon", mainEl).hide();
+        jq("#du-average-list", mainEl).css("width", "1100px");
         generateImage("#du-average-list", "#du-average-image-output", "average");
         jq("#du-average-list", mainEl).css("width", "100%");
         jq("#du-average-list", mainEl).hide();
 
-        jq("#du-players-container", mainEl).css("width", "750px");
+        jq("#du-players-container", mainEl).css("width", "1100px");
         generateImage("#du-players-container", "#du-image-output", "user");
         jq("#du-players-container", mainEl).css("width", "100%");
         jq("#du-players-container", mainEl).hide();
@@ -219,7 +223,7 @@
             };
             var hrefString = JSON.stringify(hrefObject);
             var hrefEncoded = btoa(hrefString);
-            console.log(hrefEncoded);
+            // console.log(hrefEncoded);
             var shareCard = "https://trinitymirrordataunit.com/squad_selector/share/shareCard.php?data=" + hrefEncoded;
 
             var twitterHref = "https://twitter.com/intent/tweet?" +
