@@ -102,7 +102,7 @@
             };
             /* * END - onReady */
             var getMainEl = function() {
-                var mainId = jq(htmlId + ".du-body");
+                var mainId = jq("#" + htmlId + ".du-body");
                 var newMainEl = jq(mainId);
                 if (
                     thisScriptTag &&
